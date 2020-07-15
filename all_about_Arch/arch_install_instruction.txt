@@ -1,0 +1,83 @@
+								 ___         _        _ _     _          _    
+								|_ _|_ _  __| |_ __ _| | |   /_\  _ _ __| |_  
+								 | || ' \(_-<  _/ _` | | |  / _ \| '_/ _| ' \ 
+								|___|_||_/__/\__\__,_|_|_| /_/ \_\_| \__|_||_|
+                                              
+
+1. create a bootable arch linux container.
+2. after boot select the container for access.
+3. check ping. (short terms internet Connection)
+4. run command: "timedatectl set-ntp true".
+5. check if the time date is correct or not by running, run command: "timedatectl status".
+6. if your hard disk (where you are going to install arch linux) contains another OS image or
+    has a different label. then most likely you need to wipe all the parition in that hard disk
+7. run command: "lsblk" (list block).
+8. there you will see your hard disk and its partition (tree format) (like sda1, sda2 or sdb1 or sdb 2)
+9. in my case my desired hard disk is "sda" so from now on I will use "sda" for my particular hard disk name.
+10. run command: "wipefs -a /dev/sda".
+11. then run command: "fdisk" or "cfdisk". (I will prefer cfdisk over fdisk you will surely know why)
+12. In Gnu/Linux there are 3 types of partition people create often. These are Boot partition(boot), Root partition(root)
+    and Swap partition(swap).
+13. boot : boot partition is for boot space. Surely there are some benefit creating this partition. 
+    root : root partition is where your OSs system file will be. very important.
+    swap : swap partition is like RAM(random access memory). Early age people doesn't have enough ram so they would create
+            a swap partition for get rid of ram overflowing issues.
+14. we are only going to create only two partition. root and swap.
+15. run "cfdisk" and create your partition. first create root partition give it space. and make it bootable.
+16. after that make swap partition and make it size(1GB to 2 GB max)
+     and change its type from "83 linux" to "82 swap solaris bla bla bla"  
+17. after doing that you will get 2 partition. boot partition and swap partition.
+    in my case "sda1" is my root partition and "sda2" is my swap partition.
+    confirm it by running "lsblk". you will see.
+18. format your boot partion to "ext4" file system.
+19. run command: "mkfs.ext4 /dev/sda1"
+20. don't run above for swap partition. I repeat don't
+21. for swap run command: "mkswap /dev/sda2"
+22. run command: "swapon /dev/sda2"
+23. mount your root partition to "/mnt". run command: "mount /dev/sda1 /mnt"
+24. then run command: "pacstrap /mnt base base-devel linux linux-firmware vim" (if you don't know how to operate "vim" then 
+    write "nano"). these are just text editors.
+25. give it some time. then generate fstab with "UID".
+26. run command: "genfstab -U /mnt >> /mnt/etc/fstab".
+27. after generating fstab. run command: "arch-chroot /mnt".
+28. set time zone. run command: "ln -sf /usr/share/zoneinfo/Asia/Dhaka /etc/localtime".
+29. run command: "hwclock --systohc".
+30. genearate a locale file. run command: "locale-gen"
+31. run command: "vim /etc/locale.conf". (configure locale.conf file with vim)
+32. If you are new to "vim" text editor then this is for you otherwise skip this line. after opening vim press 'i' for insert mode then insert 
+    your desired text. then press 'Esc'. press ':' and 'w' 'q' to save. if you don't like "vim" then use "nano".
+33. in "vim" or "nano" write: "LANG=en_US.UTF-8" and save it quit it.
+34. run command: "vim /etc/hostname"
+35. give a name to your device for time being I am using "ArchLinux". save and quit.
+36. run command: "vim /etc/hosts"
+37. write:
+        
+    127.0.01    localhost
+    ::1         localhost
+    127.0.1.1   ArchLinux.localdomain ArchLinux
+
+    save and quit.
+38. set your root password. run command: "passwd".
+39. set your user name and password. run command: "useradd -m 'any_name'". I am giving my name 'lian'. name must be in small case.
+40. 'sudo' is not installed so run command: "pacman -S sudo" to install it.
+41. run command: "usermod -aG wheel,audio,video,optical,storage lian".
+42. to check your user group run command: "groups lian".
+43. run command: "visudo".
+44. detect line containing this "## Uncomment to allow members of group wheel to execute any command".
+    after that line there will be another line contains "# %wheel ALL=(ALL) ALL".
+    just remove that '#' hash or number sign from the starting of the line.
+    save and quit.
+45. run command: "systemctl enable dhcpcd".
+46. if the command return anything unusal than just install dhcpcd by running, run command: "pacman -S dhcpcd".
+    then run the line 45 command again.
+47. install a bootloader. I will prefer 'grub'. install 'grub', run command: "pacman -S grub".
+48. run command: "grub-install /mnt/sda". don't give any number after 'sda'. be careful.
+49. generate grub config file. this is very important. 
+    run command: "grub-mkconfig -o /boot/grub/grub.cfg".
+50. then simply just reboot the computer and remove the container or pendrive.
+    run command: "reboot now".
+    
+****** you may face some problem after installing any desktop environment. the problem will be like "unable to open terminal".
+        that time just fix the 'local-gen' file.
+****** alt+ctrl+F2 in the login screen will take you to the 'tty' or command screen. 
+        alt+ctrl+F1 will take you back to GUI or login screen.
