@@ -1,0 +1,98 @@
+
+//////////////////////// INSTALL //////////////////////////
+
+Install i3-gaps not i3 (remember)
+Install i3blocks
+Install i3locks then i3locks-color (git clone and make install)
+Install feh
+Install picom or compton (picom is better than compton)
+Install font-awesome for icon in the i3blocks
+
+optional;
+    Install rxvt-unicode terminal if you like
+
+///////////////// time & date format ///////////////////////
+
+for datetime script: use %I for 12hr time and %P for am/pm
+
+format: %I:%M%P %a %d-%m-%Y
+
+///////////////// night mode //////////////////////////////
+
+install redshift for nightlight
+
+///////////////// for customization of theme and appearance //////////////
+
+install lxappearance for customization
+
+///////////////// i3locks-color ////////////////////////////
+
+copy the lock.sh file from github repo to scripts and make it executable
+
+inside lock.sh change the of default i3lock location
+
+remember i3lock-color is just a patch
+
+///////////////////// scripts ///////////////////////
+
+FYI : all the scripts are given in the script file just copy them
+
+make sure the shell which you want to execute with i3blocks just make them executable
+
+make executable : sudo chmod +x 'shell_file_name'
+
+make the file group and name from root to user : sudo chown 'name_of_user':'name_of_the_group'
+
+my location for i3 files:
+
+    i3config: /home/'NAME'/.config/i3/config
+    i3blocks: /home/'NAME'/.config/i3blocks/i3blocks.conf
+    scripts for i3blocks: /home/'NAME'/.config/scripts/
+    rxvt-unicode: /home/'NAME'/.Xresources
+
+///////////////////////// ranger /////////////////////////
+
+if you want to enable image viewing mode in ranger
+
+first run this command : ranger --copy-config=all
+
+then you will find a conf file in /home/'NAME'/.config/ranger/rc.conf
+
+go there and enable 'set preview_images true'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

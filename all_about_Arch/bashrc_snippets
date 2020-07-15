@@ -1,0 +1,6 @@
+ alias ls='ls --color=auto'
+ alias ll="ls -alF"
+ alias chrome="google-chrome-stable"
+ alias subl="subl3"
+ alias vivaldi="vivaldi-stable"
+ alias tmission="transmission-gtk"  
