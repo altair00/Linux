@@ -46,7 +46,9 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+#bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec gnome-terminal
+
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -208,9 +210,22 @@ bindsym $mod+r mode "resize"
 
 bar {
 
+    colors {
+        background #000000
+        statusline #ffffff
+        separator #666666
+
+        focused_workspace  #EDD0AB #285577 #ffffff
+        active_workspace   #333333 #5f676a #ffffff
+        inactive_workspace #333333 #222222 #888888
+        urgent_workspace   #2f343a #900000 #ffffff
+        binding_mode       #2f343a #900000 #ffffff
+    }
+
+
 # if you change the default location of i3blocks just add '-c' and the path to i3blocks
 # status_command i3blocks -c /home/evie/.config/i3blocks/i3blocks.conf
-        status_command i3blocks
+        status_command i3blocks -c ~/.config/i3blocks/i3blocks.conf
 
         position top
 
@@ -224,26 +239,27 @@ bar {
 ####### i3lock bg #######
 ###########################
 
-bindsym $mod+shift+x exec i3lock -i /home/lian/Pictures/i3_bg.png
+#bindsym $mod+shift+x exec i3lock -i /home/lian/Pictures/i3_bg.png
 
 # install i3locks-color for better lock-screen
 # just copy the lock.sh from the github more infor is on instructions.txt
 
-#bindsym $mod+shift+x exec /home/evie/.config/scripts/lock
+bindsym $mod+shift+x exec ~/.config/scripts/lock
 
 
 ######################################
 ####### for desktop bg (feh) #######
 ######################################
 
-exec_always feh --bg-scale /home/lian/Pictures/i3_bg.png
+exec_always feh --bg-scale ~/Pictures/aandrews_tree.jpg
 
 
 #########################################################
 ####### transparent terminal (compton or picom) #######
 #########################################################
 
-exec_always picom -f
+#exec_always picom -f
+exec_always compton
 
 
 #############################################
@@ -270,4 +286,29 @@ gaps outer 10
 ##################################
  
 #exec --no-startup-id redshift-gtk
+
+############################################################
+######## xrandr tweaks for dpi and resolution ############
+############################################################
+
+exec xrandr --dpi 96
+
+
+############################################################
+############### browser shortcut key #####################
+############################################################
+
+bindsym $mod+shift+b exec brave-browser-stable
+
+############################################################
+############## file-manager shortcut #####################
+############################################################
+
+bindsym $mod+shift+f exec nautilus
+
+############################################################
+############## pavucontrol shortcut ######################
+############################################################
+
+bindsym $mod+shift+p exec pavucontrol
 
