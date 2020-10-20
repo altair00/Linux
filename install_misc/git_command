@@ -1,0 +1,74 @@
+# installing git
+sudo apt-get install git
+
+# check git version
+git --version
+
+# set config values
+git config --global user.name "YOUR_NAME"
+git config --global user.email "YOUR_EMAIL_ADDRESS"
+
+git config --list
+
+# for help 
+git help <verb>
+like: git help config
+
+git <verb> --help
+git config --help
+
+# initialize a repository from existing code
+git init
+
+# get status of your current git 
+git status
+
+# to ingnore some files within your git
+just create  .gitignore file and add your items you want to ignore
+
+# if you want all your files in the repository
+git add -A
+
+# if you want to reset all things from staging area
+git reset
+
+# to commit
+git commit -m "YOUR_MESSAGE" 
+'-m' here stands for your message
+
+# to get a log
+git log
+
+# for cloning a repo
+git clone <url> <where to clone>
+git remote -v
+git brance -a
+
+# for showing diff 
+git diff
+
+############################################
+########## Pushing changes ###############
+############################################
+git diff
+git status
+git add -A    // to add the decorated file in the staging area
+git commit -m 
+
+#############################################
+######## First pull then push #############
+#############################################
+git pull origin master
+git push origin master
+
+# to change branches
+git checkout <branch_name>
+
+
+
+
+
+
+
+
+
