@@ -272,7 +272,7 @@ bindsym Print exec gnome-screenshot -a
 ####### making window border to 1 pixel #######
 #################################################
 
-for_window [class="^.*"] border pixel 1
+for_window [class="^.*"] border pixel 2
 
 #####################################
 ####### gap between windows #######
@@ -311,4 +311,15 @@ bindsym $mod+shift+f exec nautilus
 ############################################################
 
 bindsym $mod+shift+p exec pavucontrol
+
+#######################################################################
+############## changed the focused window border color ##############
+#######################################################################
+
+client.focused  #EDD0AB #EDD0AB  #EDD0AB #EDD0AB     #EDD0AB
+
+
+
+
+
 
