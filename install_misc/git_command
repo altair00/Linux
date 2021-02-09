@@ -67,7 +67,8 @@ git checkout <branch_name>
 
 
 
-
+# if problem arises use this command
+git remote set-url origin https://yourusername@github.com/user/repo.git
 
 
 

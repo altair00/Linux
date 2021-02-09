@@ -58,11 +58,12 @@
 
     save and quit.
 38. set your root password. run command: "passwd".
-39. set your user name and password. run command: "useradd -m 'any_name'". I am giving my name 'lian'. name must be in small case.
+39. set your user name and password. run command: "useradd -mG wheel 'any_name'". I am giving my name 'lian'. name must be in small case.
+passwd 'your name' to set your user name password
 40. 'sudo' is not installed so run command: "pacman -S sudo" to install it.
 41. run command: "usermod -aG wheel,audio,video,optical,storage lian".
 42. to check your user group run command: "groups lian".
-43. run command: "visudo".
+43. run command: "EDITOR=vim visudo".
 44. detect line containing this "## Uncomment to allow members of group wheel to execute any command".
     after that line there will be another line contains "# %wheel ALL=(ALL) ALL".
     just remove that '#' hash or number sign from the starting of the line.
