@@ -208,31 +208,31 @@ bindsym $mod+r mode "resize"
 ####### using the bar at the top of the screen and using i3blocks instead of i3status #######
 ###############################################################################################
 
-bar {
+#bar {
 
-    colors {
-        background #000000
-        statusline #ffffff
-        separator #666666
+#    colors {
+#        background #000000
+#        statusline #ffffff
+#        separator #666666
 
-        focused_workspace  #EDD0AB #285577 #ffffff
-        active_workspace   #333333 #5f676a #ffffff
-        inactive_workspace #333333 #222222 #888888
-        urgent_workspace   #2f343a #900000 #ffffff
-        binding_mode       #2f343a #900000 #ffffff
-    }
+#        focused_workspace  #EDD0AB #285577 #ffffff
+#        active_workspace   #333333 #5f676a #ffffff
+#        inactive_workspace #333333 #222222 #888888
+#        urgent_workspace   #2f343a #900000 #ffffff
+#        binding_mode       #2f343a #900000 #ffffff
+#    }
 
 
 # if you change the default location of i3blocks just add '-c' and the path to i3blocks
 # status_command i3blocks -c /home/evie/.config/i3blocks/i3blocks.conf
-        status_command i3blocks -c ~/.config/i3blocks/i3blocks.conf
+#        status_command i3blocks -c ~/.config/i3blocks/i3blocks.conf
 
-        position top
+#        position top
 
 # if you want to disable system icon from i3 just remove the comment
         
-        tray_output none
-}
+#        tray_output none
+#}
 
 
 ###########################
@@ -251,7 +251,8 @@ bindsym $mod+shift+x exec ~/.config/scripts/lock
 ####### for desktop bg (feh) #######
 ######################################
 
-exec_always feh --bg-scale ~/Pictures/aandrews_tree.jpg
+#exec_always feh --bg-scale ~/Pictures/wp.png
+exec_always feh --bg-fill ~/Pictures/wp.png
 
 
 #########################################################
@@ -266,13 +267,14 @@ exec_always compton
 ####### Slective screen shot or sss #######
 #############################################
 
-bindsym Print exec gnome-screenshot -a
+bindsym --release Print exec gnome-screenshot -a
 
 #################################################
 ####### making window border to 1 pixel #######
 #################################################
 
 for_window [class="^.*"] border pixel 2
+hide_edge_borders both
 
 #####################################
 ####### gap between windows #######
@@ -319,7 +321,9 @@ bindsym $mod+shift+p exec pavucontrol
 client.focused  #EDD0AB #EDD0AB  #EDD0AB #EDD0AB     #EDD0AB
 
 
+#polybar
 
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 
 
