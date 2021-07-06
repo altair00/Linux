@@ -70,7 +70,7 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 static const char *termcmd[]  = { "st", NULL };
 static const char *browser[] = { "brave", NULL };
 static const char *filemanager[] = { "nautilus", NULL };
-static const char *audiocontrol[] = { "pavucontrol", NULL };
+//static const char *audiocontrol[] = { "pulsemixer", NULL };
 static const char *lock[] = { "/home/abir/dwm_files/lock.sh",  NULL };
 static const char *scrotcmd[]  = { "scrot", NULL  };
 
@@ -82,7 +82,8 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_b,       spawn,          {.v = browser } },
 	{ MODKEY|ShiftMask,             XK_x,       spawn,          {.v = lock } },
 	{ MODKEY|ShiftMask,             XK_f,       spawn,          {.v = filemanager } },
-	{ MODKEY|ShiftMask,             XK_p,       spawn,          {.v = audiocontrol } },
+	//{ MODKEY|ShiftMask,             XK_p,       spawn,          {.v = audiocontrol } },
+	{ MODKEY|ShiftMask,             XK_p,       spawn,          SHCMD("st -e pulsemixer") },
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
 	//{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,            		    XK_Return, spawn,          {.v = termcmd } },
@@ -130,7 +131,6 @@ static Button buttons[] = {
 	/* click                event mask      button          function        argument */
 	{ ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
 	{ ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
-	{ ClkWinTitle,          0,              Button2,        zoom,           {0} },
 	{ ClkStatusText,        0,              Button2,        spawn,          {.v = termcmd } },
 	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
 	{ ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },

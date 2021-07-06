@@ -1,8 +1,8 @@
 set nocompatible
 "set ut=60000
-set timeoutlen=1000
+"set timeoutlen=1000
 
-set ttimeoutlen=0
+"set ttimeoutlen=0
 
 syntax on
 set noerrorbells
@@ -12,12 +12,12 @@ set expandtab
 set smartindent
 set rnu
 set nu
-set wrap
+set nowrap
 set smartcase
 set incsearch
 set splitright
-set cursorline
-set t_Co=256
+"set cursorline
+"set t_Co=256
 "set spelllang=en_us
 "set spell
 
@@ -25,24 +25,27 @@ set t_Co=256
 
 call plug#begin()
 "Plug    'junegunn/goyo.vim'
-Plug    'junegunn/fzf'
-Plug    'junegunn/fzf.vim'
-Plug    'alvan/vim-closetag'
+"Plug    'junegunn/fzf'
+"Plug    'junegunn/fzf.vim'
+"Plug    'alvan/vim-closetag'
 Plug	'jiangmiao/auto-pairs'
 Plug    'preservim/nerdtree'
 Plug    'vim-airline/vim-airline'
 Plug    'vim-airline/vim-airline-themes'
 "Plug    'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
-Plug    'ap/vim-css-color'
+"Plug    'ap/vim-css-color'
 Plug    'tpope/vim-surround'
 call plug#end()
 
 "autocmd Filetype rmd map <F5> :!echo<space>"require(rmarkdown);<space>render('<c-r>%')"<space>\|<space>R<space>--vanilla<enter>
-nnoremap <silent> <C-f> :Files<CR>
-nnoremap <C-g> :Rg <CR>
+"nnoremap <silent> <C-f> :Files<CR>
+"nnoremap <C-g> :Rg <CR>
 
+colorscheme ron
 map <C-n> :NERDTreeToggle<CR>
 let g:airline_powerline_fonts = 1
-let g:airline_theme='kolor'
+let g:airline_theme='minimalist'
 
-vmap <leader>xyy :!xclip -f -sel clip<CR>
+set pastetoggle=<F2>
+"vmap <leader>xyy :!xclip -f -sel clip<CR>
+vnoremap <C-C> :w !xclip -i -sel c<CR><CR>

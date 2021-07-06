@@ -4,6 +4,7 @@
 static const unsigned int borderpx  = 2;        /* border pixel of windows */
 static const unsigned int gappx     = 5;        /* gaps between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
+static const int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "Source Code Pro Medium:size=10" };
@@ -36,9 +37,11 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
-	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
+	/* class     instance  title           tags mask  isfloating  isterminal  noswallow  monitor */
+	{ "Gimp",    NULL,     NULL,           0,         1,          0,           0,        -1 },
+	{ "Firefox", NULL,     NULL,           1 << 8,    0,          0,          -1,        -1 },
+	{ "St",      NULL,     NULL,           0,         0,          1,           0,        -1 },
+	{ NULL,      NULL,     "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
 };
 
 /* layout(s) */
@@ -70,7 +73,7 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 static const char *termcmd[]  = { "st", NULL };
 static const char *browser[] = { "brave", NULL };
 static const char *filemanager[] = { "nautilus", NULL };
-static const char *audiocontrol[] = { "pavucontrol", NULL };
+//static const char *audiocontrol[] = { "pulsemixer", NULL };
 static const char *lock[] = { "/home/abir/dwm_files/lock.sh",  NULL };
 static const char *scrotcmd[]  = { "scrot", NULL  };
 
@@ -82,7 +85,8 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_b,       spawn,          {.v = browser } },
 	{ MODKEY|ShiftMask,             XK_x,       spawn,          {.v = lock } },
 	{ MODKEY|ShiftMask,             XK_f,       spawn,          {.v = filemanager } },
-	{ MODKEY|ShiftMask,             XK_p,       spawn,          {.v = audiocontrol } },
+	//{ MODKEY|ShiftMask,             XK_p,       spawn,          {.v = audiocontrol } },
+	{ MODKEY|ShiftMask,             XK_p,       spawn,          SHCMD("st -e pulsemixer") },
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
 	//{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,            		    XK_Return, spawn,          {.v = termcmd } },
