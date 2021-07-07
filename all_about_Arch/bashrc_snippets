@@ -4,3 +4,7 @@
  alias subl="subl3"
  alias vivaldi="vivaldi-stable"
  alias tmission="transmission-gtk"  
+
+ #for sudo autocompletion
+
+ complete -cf sudo
