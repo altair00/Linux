@@ -1,7 +1,7 @@
 #!/bin/bash
 
 options="Poweroff\nReboot"
-selected=$(echo -e $options | dmenu -i -p "poweroff or Reboot")
+selected=$(echo -e $options | dmenu -i -p "Poweroff or Reboot")
 choice_options="Yes\nNo"
 
 if [[ $selected = "Poweroff" ]]; then
