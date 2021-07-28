@@ -37,11 +37,11 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class     instance  title           tags mask  isfloating  isterminal  noswallow  monitor */
-	{ "Gimp",    NULL,     NULL,           0,         1,          0,           0,        -1 },
-	{ "Firefox", NULL,     NULL,           1 << 8,    0,          0,          -1,        -1 },
-	{ "St",      NULL,     NULL,           0,         0,          1,           0,        -1 },
-	{ NULL,      NULL,     "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
+	/* class     instance  title           tags mask    iscentered      isfloating  isterminal  noswallow  monitor */
+	{ "Gimp",    NULL,     NULL,           0,              0,                1,          0,           0,        -1 },
+	{ "Firefox", NULL,     NULL,           1 << 8,         0,                0,          0,          -1,        -1 },
+	{ "st",      NULL,     NULL,           0,              1,                0,          1,           0,        -1 },
+	{ NULL,      NULL,     "Event Tester", 0,              0,                0,          0,           1,        -1 }, /* xev */
 };
 
 /* layout(s) */
@@ -74,8 +74,11 @@ static const char *termcmd[]  = { "st", NULL };
 static const char *browser[] = { "brave", NULL };
 static const char *filemanager[] = { "nautilus", NULL };
 //static const char *audiocontrol[] = { "pulsemixer", NULL };
-static const char *lock[] = { "/home/abir/dwm_files/lock.sh",  NULL };
+static const char *lock[] = { "/home/abir/sh/lock.sh",  NULL };
+static const char *power[] = { "/home/abir/sh/power.sh",  NULL };
+static const char *search[] = { "/home/abir/sh/search.sh",  NULL };
 static const char *scrotcmd[]  = { "scrot", NULL  };
+
 
 #include "movestack.c"
 static Key keys[] = {
@@ -83,11 +86,13 @@ static Key keys[] = {
     { 0,                            XK_Print,   spawn,          {.v = scrotcmd } },
     { ControlMask,                  XK_Print,   spawn,          SHCMD("sleep 1s;scrot --select ") },
 	{ MODKEY|ShiftMask,             XK_b,       spawn,          {.v = browser } },
-	{ MODKEY|ShiftMask,             XK_x,       spawn,          {.v = lock } },
+	{ MODKEY|ShiftMask,             XK_l,       spawn,          {.v = lock } },
+	{ MODKEY|ShiftMask,             XK_x,       spawn,          {.v = power } },
 	{ MODKEY|ShiftMask,             XK_f,       spawn,          {.v = filemanager } },
 	//{ MODKEY|ShiftMask,             XK_p,       spawn,          {.v = audiocontrol } },
 	{ MODKEY|ShiftMask,             XK_p,       spawn,          SHCMD("st -e pulsemixer") },
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
+	{ MODKEY,                       XK_s,      spawn,          {.v = search } },
 	//{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,            		    XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
