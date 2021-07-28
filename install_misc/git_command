@@ -71,5 +71,10 @@ git checkout <branch_name>
 git remote set-url origin https://yourusername@github.com/user/repo.git
 
 
+# for submodule problem
+git rm --cached yourfolder
+
+
+
 
 
