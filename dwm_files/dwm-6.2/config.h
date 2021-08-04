@@ -77,14 +77,16 @@ static const char *filemanager[] = { "nautilus", NULL };
 static const char *lock[] = { "/home/abir/sh/lock.sh",  NULL };
 static const char *power[] = { "/home/abir/sh/power.sh",  NULL };
 static const char *search[] = { "/home/abir/sh/search.sh",  NULL };
-static const char *scrotcmd[]  = { "scrot", NULL  };
+static const char *new_words[] = { "/home/abir/sh/new_words.sh",  NULL };
+static const char *scrot_cmd[]  = { "/home/abir/sh/screenshot.sh", NULL  };
+static const char *scrot_selective_cmd[]  = { "/home/abir/sh/screenshot_selective.sh", NULL  };
 
 
 #include "movestack.c"
 static Key keys[] = {
 	/* modifier                     key        function        argument */
-    { 0,                            XK_Print,   spawn,          {.v = scrotcmd } },
-    { ControlMask,                  XK_Print,   spawn,          SHCMD("sleep 1s;scrot --select ") },
+    { 0,                            XK_Print,   spawn,          {.v = scrot_cmd } },
+    { ControlMask,                  XK_Print,   spawn,          {.v = scrot_selective_cmd } },
 	{ MODKEY|ShiftMask,             XK_b,       spawn,          {.v = browser } },
 	{ MODKEY|ShiftMask,             XK_l,       spawn,          {.v = lock } },
 	{ MODKEY|ShiftMask,             XK_x,       spawn,          {.v = power } },
@@ -93,6 +95,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_p,       spawn,          SHCMD("st -e pulsemixer") },
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_s,      spawn,          {.v = search } },
+	{ MODKEY,                       XK_n,      spawn,          {.v = new_words } },
 	//{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,            		    XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
