@@ -74,7 +74,11 @@ git remote set-url origin https://yourusername@github.com/user/repo.git
 # for submodule problem
 git rm --cached yourfolder
 
-test
+
+# this command will save first occurences of user-name and access_token
+# you don't have to type or copy paste your access_token everytime
+git config --global credential.helper cache
+
 
 
 
