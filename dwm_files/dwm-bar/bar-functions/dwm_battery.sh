@@ -6,24 +6,36 @@
 
 dwm_battery () {
     # Change BAT1 to whatever your battery is identified as. Typically BAT0 or BAT1
-    #CHARGE=$(cat /sys/class/power_supply/BAT1/capacity)
-    CHARGE=$(acpi | awk '{ print $4 }' | sed 's/.$//')
-    STATUS=$(acpi | awk '{ print $3 }' | sed 's/.$//')
+    CHARGE=$(cat /sys/class/power_supply/BAT0/capacity)
+    STATUS=$(cat /sys/class/power_supply/BAT0/status)
 
-    #STATUS=$(cat /sys/class/power_supply/BAT1/status)
+   if [[ "$STATUS" = "Charging" || "$STATUS" = "Unknown" ]]; then
+       if [ $CHARGE -le 6 ]; then
+           printf " %s%% %s" "$CHARGE" ""
+        elif [ $CHARGE -le 25 ]; then
+            printf " %s%% %s" "$CHARGE" ""
+        elif [ $CHARGE -le 50 ]; then
+            printf " %s%% %s" "$CHARGE" ""
+        elif [ $CHARGE -le 75 ]; then
+            printf " %s%% %s" "$CHARGE" ""
+        else
+            printf " %s%% %s" "$CHARGE" ""
+        fi
+    else
+       if [ $CHARGE -le 6 ]; then
+           printf " %s%%" "$CHARGE"
+        elif [ $CHARGE -le 25 ]; then
+            printf " %s%%" "$CHARGE"
+        elif [ $CHARGE -le 50 ]; then
+            printf " %s%%" "$CHARGE"
+        elif [ $CHARGE -le 75 ]; then
+            printf " %s%%" "$CHARGE"
+        else
+            printf " %s%%" "$CHARGE"
+        fi
+   fi
 
-   # printf "%s" "$SEP1"
-   # if [ "$IDENTIFIER" = "unicode" ]; then
-   #     if [ "$STATUS" = "Charging" ]; then
-   #         printf "🔌 %s%% %s" "$CHARGE" "$STATUS"
-   #     else
-   #         printf "🔋 %s%% %s" "$CHARGE" "$STATUS"
-   #     fi
-   # else
-   #     printf "BAT %s%% %s" "$CHARGE" "$STATUS"
-    printf " %s %s" "$CHARGE" "$STATUS"
-   # fi
-    printf "%s\n" "$SEP2"
+   printf "%s\n" "$SEP2"
 }
 
 dwm_battery
