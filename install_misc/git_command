@@ -79,6 +79,8 @@ git rm --cached yourfolder
 # you don't have to type or copy paste your access_token everytime
 git config --global credential.helper cache
 
+# for undoing credential.helper cache command
+git config --global --unset credential.helper
 
 
 
