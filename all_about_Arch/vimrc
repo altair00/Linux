@@ -1,0 +1,119 @@
+""""""""""""""""""""""""""""""""""
+""""""" frequently used  """"""
+"""""""""""""""""""""""""""""
+
+set nocompatible
+syntax on
+set noerrorbells
+set tabstop=4 softtabstop=4 
+set shiftwidth=4
+set expandtab
+set smartindent
+set rnu
+set nu
+set nowrap
+set smartcase
+set incsearch
+set splitright
+:imap jj <Esc>
+
+"""""""""""""""""""""""""""""
+""""""" rarely used  """"""
+"""""""""""""""""""""""""
+
+"set ut=60000
+"set timeoutlen=1000
+"set ttimeoutlen=0
+"set cursorline
+"set t_Co=256
+"set spelllang=en_us
+"set spell
+
+""""""""""""""""""""""""
+""""""" plugins """"""
+""""""""""""""""""""
+
+call plug#begin()
+"Plug    'junegunn/goyo.vim'
+Plug    'junegunn/fzf'
+Plug    'junegunn/fzf.vim'
+Plug    'alvan/vim-closetag'
+Plug	'jiangmiao/auto-pairs'
+Plug    'preservim/nerdtree'
+Plug    'vim-airline/vim-airline'
+Plug    'vim-airline/vim-airline-themes'
+"Plug    'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
+Plug    'ap/vim-css-color'
+Plug    'tpope/vim-surround'
+Plug    'morhetz/gruvbox'
+Plug    'iamcco/markdown-preview.vim'
+call plug#end()
+
+""""""""""""""""""""""""""""""""""""""
+""""""" .rmd :files & ripgrep """"""
+""""""""""""""""""""""""""""""""""
+
+"autocmd Filetype rmd map <F5> :!echo<space>"require(rmarkdown);<space>render('<c-r>%')"<space>\|<space>R<space>--vanilla<enter>
+nnoremap <silent> <C-f> :Files<CR>
+"nnoremap <C-g> :Rg <CR>
+
+""""""""""""""""""""""
+""""""" theme """"""
+""""""""""""""""""
+
+colorscheme gruvbox
+"colorscheme ron
+"
+""""""""""""""""""""""""""""""
+""""""" the nerd tree """"""
+""""""""""""""""""""""""""
+
+map <C-n> :NERDTreeToggle<CR>
+
+"""""""""""""""""""""""""""""""""
+""""""" vim airline conf """"""
+"""""""""""""""""""""""""""""
+
+let g:airline_powerline_fonts = 1
+let g:airline_theme='minimalist'
+
+
+"""""""""""""""""""""""""""""""""
+""""""" xclip copy paste """"""
+"""""""""""""""""""""""""""""
+
+set pastetoggle=<F2>
+"vmap <leader>xyy :!xclip -f -sel clip<CR>
+vnoremap <C-C> :w !xclip -i -sel c<CR><CR>
+
+""""""""""""""""""""""""""""""""""""""
+""""""" show buffers and move """"""
+""""""""""""""""""""""""""""""""""
+
+:nnoremap <F5> :buffers<CR>:buffer<Space>
+
+
+"""""""""""""""""""""""""""""""""
+""""""" print full path """""""
+"""""""""""""""""""""""""""""
+
+nnoremap <leader>pfn :echo expand('%:p')<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""
+""""""" transparent background """"""""""""
+"""""""            and         """""""""" 
+"""""""     line number color  """"""""
+"""""""""""""""""""""""""""""""""""""
+
+hi LineNr cterm=bold ctermfg=Blue
+hi Normal guibg=NONE ctermbg=NONE
+
+
+
+""""""""""""""""""""""""""""""""""""""""""""
+""""""" fzf preview button control """""""
+""""""""""""""""""""""""""""""""""""""""
+
+let $FZF_DEFAULT_OPTS="--preview 'less {}' --bind ctrl-p:preview-up,ctrl-n:preview-down"
+
+
