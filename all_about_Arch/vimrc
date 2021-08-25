@@ -2,7 +2,7 @@
 """"""" frequently used  """"""
 """""""""""""""""""""""""""""
 
-set nocompatible
+set nocompatible    "unsetting vi
 syntax on
 set noerrorbells
 set tabstop=4 softtabstop=4 
@@ -15,7 +15,12 @@ set nowrap
 set smartcase
 set incsearch
 set splitright
+set path+=**        "file finder with glob
+set wildmenu        "menu for file finder 
+set autowrite       "auto saving buffer
+filetype plugin on
 :imap jj <Esc>
+
 
 """""""""""""""""""""""""""""
 """"""" rarely used  """"""
@@ -42,7 +47,7 @@ Plug	'jiangmiao/auto-pairs'
 Plug    'preservim/nerdtree'
 Plug    'vim-airline/vim-airline'
 Plug    'vim-airline/vim-airline-themes'
-"Plug    'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
+Plug    'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
 Plug    'ap/vim-css-color'
 Plug    'tpope/vim-surround'
 Plug    'morhetz/gruvbox'
@@ -99,6 +104,8 @@ vnoremap <C-C> :w !xclip -i -sel c<CR><CR>
 
 nnoremap <leader>pfn :echo expand('%:p')<CR>
 
+":echo expand("%")
+
 """""""""""""""""""""""""""""""""""""""""""""
 """"""" transparent background """"""""""""
 """""""            and         """""""""" 
@@ -117,3 +124,13 @@ hi Normal guibg=NONE ctermbg=NONE
 let $FZF_DEFAULT_OPTS="--preview 'less {}' --bind ctrl-p:preview-up,ctrl-n:preview-down"
 
 
+nnoremap <leader>java :-1read $HOME/.vim/.java.skeleton<CR>f{i
+
+"""""""""""""""""""""""""""
+""""""" some tips """""""
+""""""""""""""""""""""
+
+"for paste in the command mode just press `yw` and go to command mode and
+"press `ctrl+r+"` and see the magic for yourself
+"
+"let g:livepreview_previewer = 'zathura'
