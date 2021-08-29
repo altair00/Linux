@@ -34,6 +34,7 @@ filetype plugin on
 "set spelllang=en_us
 "set spell
 
+
 """"""""""""""""""""""""
 """"""" plugins """"""
 """"""""""""""""""""
@@ -52,6 +53,7 @@ Plug    'ap/vim-css-color'
 Plug    'tpope/vim-surround'
 Plug    'morhetz/gruvbox'
 Plug    'iamcco/markdown-preview.vim'
+Plug    'Yggdroot/indentLine'
 call plug#end()
 
 """"""""""""""""""""""""""""""""""""""
@@ -124,13 +126,28 @@ hi Normal guibg=NONE ctermbg=NONE
 let $FZF_DEFAULT_OPTS="--preview 'less {}' --bind ctrl-p:preview-up,ctrl-n:preview-down"
 
 
-nnoremap <leader>java :-1read $HOME/.vim/.java.skeleton<CR>f{i
-
 """""""""""""""""""""""""""
 """"""" some tips """""""
 """"""""""""""""""""""
 
-"for paste in the command mode just press `yw` and go to command mode and
-"press `ctrl+r+"` and see the magic for yourself
-"
-"let g:livepreview_previewer = 'zathura'
+let g:livepreview_previewer = 'zathura'
+
+nnoremap <C-s> :%s/<C-r><C-w>//g<left><left>
+nnoremap <leader>java :-1read $HOME/.vim/.java.skeleton<CR>f{i
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
