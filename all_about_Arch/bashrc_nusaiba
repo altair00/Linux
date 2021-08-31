@@ -11,6 +11,8 @@ alias vifm='~/sh/vifm.sh'
 alias fcd='. ~/sh/fcd.sh'
 alias words='cat ~/.newwords'
 alias nstart='~/sh/exec.sh'
+alias grep='grep --color=always'
+alias zathura='devour zathura'
 #PS1='[\u@\h \W]\$ '
 #PS1="[\\u@\\H \\W \\@]\\$ "
 
@@ -20,8 +22,11 @@ alias nstart='~/sh/exec.sh'
 PS1="\[\e[1;31m\]┌──\[\e[m\]\[\e[1;33m\][\[\e[m\]\[\e[1;38;5;172m\]\u\[\e[m\]@\[\e[1;38;5;153m\]\h\[\e[m\] \[\e[1;38;5;214m\]\w\[\e[m\]\[\e[1;33m\]]\[\e[m\]\\n\[\e[1;31m\]└─\[\e[m\]$ "
 
 
-EDITOR="vim"
+export EDITOR="vim"
+export SUDO_EDITOR=/usr/bin/vim
 #complete -cf sudo
+
+source /usr/share/fzf/completion.bash && source /usr/share/fzf/key-bindings.bash
 
 
 
