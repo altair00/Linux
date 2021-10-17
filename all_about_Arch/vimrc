@@ -6,6 +6,7 @@
 " (_)_/ |_|_| |_| |_|_|  \___|
 "                             
 "                             
+"
 """"""""""""""""""""""""""""""""""
 """"""" frequently used  """"""
 """""""""""""""""""""""""""""
@@ -62,6 +63,8 @@ Plug    'tpope/vim-surround'
 Plug    'morhetz/gruvbox'
 Plug    'iamcco/markdown-preview.vim'
 Plug    'Yggdroot/indentLine'
+Plug    'mattn/emmet-vim'
+Plug    'maxmellon/vim-jsx-pretty'
 call plug#end()
 
 """"""""""""""""""""""""""""""""""""""
@@ -99,7 +102,11 @@ let g:airline_theme='minimalist'
 
 set pastetoggle=<F2>
 "vmap <leader>xyy :!xclip -f -sel clip<CR>
-vnoremap <C-C> :w !xclip -i -sel c<CR><CR>
+"vmap <C-C> :w !xclip -i -sel c<CR><CR>
+vmap <leader>xyy :w !xclip -i -sel c<CR><CR>
+map <leader>xpp :-1r!xclip -o -sel c<CR>
+
+
 
 """"""""""""""""""""""""""""""""""""""
 """"""" show buffers and move """"""
@@ -142,8 +149,15 @@ let g:livepreview_previewer = 'zathura'
 
 nnoremap <C-s> :%s/<C-r><C-w>//g<left><left>
 nnoremap <leader>java :-1read $HOME/.vim/.java.skeleton<CR>f{i
+nnoremap <leader>rfce :-1read $HOME/.vim/.react.skeleton<CR>3jf(i
 
+let g:user_emmet_settings = {
+\  'javascript' : {
+\      'extends' : 'jsx',
+\  },
+\}
 
+"let g:user_emmet_settings = { 'indentation' : '    ' }
 
 
 
