@@ -48,52 +48,52 @@ filetype plugin on
 """"""" plugins """"""
 """"""""""""""""""""
 
-call plug#begin()
-"Plug    'junegunn/goyo.vim'
-Plug    'junegunn/fzf'
-Plug    'junegunn/fzf.vim'
-Plug    'alvan/vim-closetag'
-Plug	'jiangmiao/auto-pairs'
-Plug    'preservim/nerdtree'
-Plug    'vim-airline/vim-airline'
-Plug    'vim-airline/vim-airline-themes'
-Plug    'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
-Plug    'ap/vim-css-color'
-Plug    'tpope/vim-surround'
-Plug    'morhetz/gruvbox'
-Plug    'iamcco/markdown-preview.vim'
-Plug    'Yggdroot/indentLine'
-Plug    'mattn/emmet-vim'
-Plug    'maxmellon/vim-jsx-pretty'
-call plug#end()
+"call plug#begin()
+""Plug    'junegunn/goyo.vim'
+"Plug    'junegunn/fzf'
+"Plug    'junegunn/fzf.vim'
+"Plug    'alvan/vim-closetag'
+"Plug	'jiangmiao/auto-pairs'
+"Plug    'preservim/nerdtree'
+"Plug    'vim-airline/vim-airline'
+"Plug    'vim-airline/vim-airline-themes'
+"Plug    'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
+"Plug    'ap/vim-css-color'
+"Plug    'tpope/vim-surround'
+"Plug    'morhetz/gruvbox'
+"Plug    'iamcco/markdown-preview.vim'
+"Plug    'Yggdroot/indentLine'
+"Plug    'mattn/emmet-vim'
+"Plug    'maxmellon/vim-jsx-pretty'
+"call plug#end()
 
 """"""""""""""""""""""""""""""""""""""
 """"""" .rmd :files & ripgrep """"""
 """"""""""""""""""""""""""""""""""
 
 "autocmd Filetype rmd map <F5> :!echo<space>"require(rmarkdown);<space>render('<c-r>%')"<space>\|<space>R<space>--vanilla<enter>
-nnoremap <silent> <C-f> :Files<CR>
+"nnoremap <silent> <C-f> :Files<CR>
 "nnoremap <C-g> :Rg <CR>
 
 """"""""""""""""""""""
 """"""" theme """"""
 """"""""""""""""""
 
-colorscheme gruvbox
-"colorscheme ron
+"colorscheme gruvbox
+colorscheme ron
 "
 """"""""""""""""""""""""""""""
 """"""" the nerd tree """"""
 """"""""""""""""""""""""""
 
-map <C-n> :NERDTreeToggle<CR>
+"map <C-n> :NERDTreeToggle<CR>
 
 """""""""""""""""""""""""""""""""
 """"""" vim airline conf """"""
 """""""""""""""""""""""""""""
 
-let g:airline_powerline_fonts = 1
-let g:airline_theme='minimalist'
+"let g:airline_powerline_fonts = 1
+"let g:airline_theme='minimalist'
 
 
 """""""""""""""""""""""""""""""""
@@ -138,26 +138,26 @@ hi Normal guibg=NONE ctermbg=NONE
 """"""" fzf preview button control """""""
 """"""""""""""""""""""""""""""""""""""""
 
-let $FZF_DEFAULT_OPTS="--preview 'less {}' --bind ctrl-p:preview-up,ctrl-n:preview-down"
+"let $FZF_DEFAULT_OPTS="--preview 'less {}' --bind ctrl-p:preview-up,ctrl-n:preview-down"
 
 
 """""""""""""""""""""""""""
 """"""" some tips """""""
 """"""""""""""""""""""
 
-let g:livepreview_previewer = 'zathura'
+"let g:livepreview_previewer = 'zathura'
 
 nnoremap <C-s> :%s/<C-r><C-w>//g<left><left>
 nnoremap <leader>java :-1read $HOME/.vim/.java.skeleton<CR>f{i
 nnoremap <leader>rfce :-1read $HOME/.vim/.react.skeleton<CR>3jf(i
 
-let g:user_emmet_settings = {
-\  'javascript' : {
-\      'extends' : 'jsx',
-\  },
-\}
-
-"let g:user_emmet_settings = { 'indentation' : '    ' }
+"let g:user_emmet_settings = {
+"\  'javascript' : {
+"\      'extends' : 'jsx',
+"\  },
+"\}
+"
+""let g:user_emmet_settings = { 'indentation' : '    ' }
 
 
 
