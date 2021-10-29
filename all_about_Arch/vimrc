@@ -159,6 +159,10 @@ nnoremap <leader>rfce :-1read $HOME/.vim/.react.skeleton<CR>3jf(i
 "
 ""let g:user_emmet_settings = { 'indentation' : '    ' }
 
+:nnoremap <F1> :e!<CR>
+:nnoremap <F2> :!./run<CR>
+:nnoremap <leader>t :IndentLinesToggle<CR>
+
 
 
 
