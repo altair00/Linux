@@ -37,14 +37,15 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class               instance              title               tags mask    iscentered      isfloating  isterminal  noswallow    monitor */
-	{ "Gimp",                NULL,               NULL,                   0,            0,              1,          0,          0,        -1 },
-	{ "Firefox",             NULL,               NULL,                1 << 8,         0,              0,          0,         -1,        -1 },
-	{ "st",                  NULL,               NULL,                   0,            0,              0,          1,          0,        -1 },
-	{ NULL,                  NULL,          "Event Tester",              0,            0,              0,          0,          1,        -1 }, /* xev */
-	{ "st-256color",      "st-256color",     "pulsemixer",               0,            1,              1,          0,          1,        -1 }, 
-	{ "Brave-browser",       NULL,               NULL,                   1,            0,              0,          0,          1,        -1 },
-	{ "st-256color",       "st-256color",       "note",                  1,            1,              1,          0,          1,        -1 },
+	/* class                 instance                 title           tags mask    iscentered      isfloating  isterminal  noswallow    monitor */
+	{ "Gimp",                  NULL,                  NULL,               0,            0,              1,          0,          0,        -1 },
+	{ "Firefox",               NULL,                  NULL,            1 << 8,          0,              0,          0,         -1,        -1 },
+	{ "st",                    NULL,                  NULL,               0,            0,              0,          1,          0,        -1 },
+	{ NULL,                    NULL,              "Event Tester",         0,            0,              0,          0,          1,        -1 }, /* xev */
+	{ "st-256color",       "st-256color",         "pulsemixer",           0,            1,              1,          0,          1,        -1 }, 
+	{ "Brave-browser",         NULL,                  NULL,               1,            0,              0,          0,          1,        -1 },
+	{ "st-256color",        "st-256color",           "note",              0,            1,              1,          0,          1,        -1 },
+	{ "Zathura",          "org.pwmt.zathura",         NULL,               0,            0,              0,          0,          1,        -1 },
 };
 
 /* layout(s) */
@@ -84,6 +85,7 @@ static const char *new_words[] = { "/home/abir/sh/new_words.sh",  NULL };
 static const char *maim_cmd[]  = { "/home/abir/sh/screenshot.sh", NULL  };
 static const char *maim_selective_cmd[]  = { "/home/abir/sh/screenshot_selective.sh", NULL  };
 static const char *note[]  = { "st", "-t", "note", "/home/abir/sh/note.sh", NULL  };
+static const char *pdf_opener[]  = { "/home/abir/sh/pdf_opener.sh", NULL  };
 
 
 #include "movestack.c"
@@ -94,9 +96,11 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_b,       spawn,          {.v = browser } },
 	{ MODKEY|ShiftMask,             XK_l,       spawn,          {.v = lock } },
 	{ MODKEY|ShiftMask,             XK_x,       spawn,          {.v = power } },
-	{ MODKEY|ShiftMask,             XK_f,       spawn,          {.v = filemanager } },
+	{ MODKEY|ShiftMask,             XK_n,       spawn,          {.v = filemanager } },
 	//{ MODKEY|ShiftMask,             XK_p,       spawn,          {.v = audiocontrol } },
 	{ MODKEY|ShiftMask,             XK_p,       spawn,          SHCMD("st -e pulsemixer") },
+	{ MODKEY|ShiftMask,             XK_r,       spawn,          SHCMD("st -e ranger") },
+	{ MODKEY,                       XK_r,       spawn,         {.v = pdf_opener } },
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_s,      spawn,          {.v = search } },
 	{ MODKEY,                       XK_w,      spawn,          {.v = new_words } },
@@ -120,6 +124,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
+	{ MODKEY|ShiftMask,             XK_f,      togglefullscr,  {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
 	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
 	{ MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },

@@ -21,6 +21,10 @@ fi
 
 echo "process running"
 
+nordvpn connect Singapore
+
+echo "connected to Singapore Server"
+
 while :
 do
 
