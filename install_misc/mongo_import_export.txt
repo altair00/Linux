@@ -1,0 +1,23 @@
+There are two ways to import and export in the mongodb
+
+
+First way you can export collection by collection 
+by following this way you can see the collection data 
+
+command:
+mongoexport -d 'dbName' -c 'collectionName' -o 'outputfile.json'
+
+mongoimport -d 'dbName' -c 'collectionName' 'inputfile.json'
+
+
+Second way you can export and import entire database without going
+through each collections
+by following this way you will not be able to see the data
+
+command:
+mongodump -d 'dbName' -o 'folderPath'
+
+mongorestore -d 'dbName' 'folderPath'
+
+remember to install 'mongodb-tools'
+otherwise you will wonder where is the binaries
