@@ -6,7 +6,7 @@
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
 static char *font = "Source Code Pro Medium:pixelsize=16:antialias=true:autohint=true";
-static int borderpx = 2;
+static int borderpx = 5;
 
 /*
  * What program is execed by st depends of these precedence rules:
@@ -94,7 +94,7 @@ char *termname = "st-256color";
 unsigned int tabspaces = 8;
 
 /* bg opacity */
-float alpha = 0.8;
+float alpha = 0.9;
 
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
@@ -115,9 +115,8 @@ static const char *colorname[] = {
     "#ad7fa8",
     "#34e2e2",
     "#eeeeec",
-
     
-	/* 8 normal colors 
+	/* 8 normal colors
 	"red3",
 	"green3",
 	"yellow3",
@@ -134,13 +133,15 @@ static const char *colorname[] = {
 	"#5c5cff",
 	"magenta",
 	"cyan",
-	"white",*/
+	"white",
+    */
 
 	[255] = 0,
     "#49b9c7", //256
     "#f6f6f6", //257
     "#2e3436", //258
-    "#d3d7cf", //259
+   // "#d3d7cf", //259
+    "#ebdbb2",
     "black"
 
 
@@ -152,7 +153,7 @@ static const char *colorname[] = {
  * Default colors (colorname index)
  * foreground, background, cursor, reverse cursor
  */
-unsigned int defaultfg = 259 ;
+unsigned int defaultfg = 259;
 unsigned int defaultbg = 260;
 static unsigned int defaultcs = 256;
 static unsigned int defaultrcs = 257;

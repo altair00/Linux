@@ -32,6 +32,8 @@ static const unsigned int alphas[][3]      = {
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 
+/*fst - floating st*/
+
 static const Rule rules[] = {
 	/* xprop(1):
 	 *	WM_CLASS(STRING) = instance, class
@@ -46,6 +48,7 @@ static const Rule rules[] = {
 	{ "Brave-browser",         NULL,                  NULL,               1,            0,              0,          0,          1,        -1 },
 	{ "st-256color",        "st-256color",           "note",              0,            1,              1,          0,          1,        -1 },
 	{ "Zathura",          "org.pwmt.zathura",         NULL,               0,            0,              0,          0,          1,        -1 },
+	{ "fst",                "st-256color",            "fst",              0,            1,              1,          0,          1,        -1 }, 
 };
 
 /* layout(s) */
@@ -100,6 +103,7 @@ static Key keys[] = {
 	//{ MODKEY|ShiftMask,             XK_p,       spawn,          {.v = audiocontrol } },
 	{ MODKEY|ShiftMask,             XK_p,       spawn,          SHCMD("st -e pulsemixer") },
 	{ MODKEY|ShiftMask,             XK_r,       spawn,          SHCMD("st -e ranger") },
+	{ MODKEY,                       XK_u,       spawn,          SHCMD("st -c 'fst' -t 'fst'") },
 	{ MODKEY,                       XK_r,       spawn,         {.v = pdf_opener } },
 	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_s,      spawn,          {.v = search } },
