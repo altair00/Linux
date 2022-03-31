@@ -3,6 +3,7 @@
 #define CLICKABLE_BLOCKS
 
 const Block blocks[] = {
+	BLOCK("~/sh/bar-functions/nettraf.sh",           1,    0),
 	BLOCK("~/sh/bar-functions/dwm_resources.sh",     1,    0),
 	BLOCK("~/sh/bar-functions/dwm_battery.sh",      10,    0),
 	BLOCK("~/sh/bar-functions/dwm_pulse.sh",        10,    0),
