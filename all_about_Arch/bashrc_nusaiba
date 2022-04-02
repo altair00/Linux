@@ -21,7 +21,7 @@ alias copy='xclip -selection clipboard'
 alias back='cd ..'
 alias ae='~/sh/autoexec.sh'
 
-PS1="\[\e[1;33m\]┌──\[\e[m\]\[\e[1;33m\][\[\e[m\]\[\e[1;38;5;172m\]\u\[\e[m\]@\[\e[1;38;5;153m\]\h\[\e[m\] \[\e[1;38;5;214m\]\w\[\e[m\]\[\e[1;33m\]]\[\e[m\]\\n\[\e[1;33m\]└─O\[\e[m\] "
+PS1="\[\e[1;33m\]┌──\[\e[m\]\[\e[1;33m\][\[\e[m\]\[\e[1;38;5;172m\]\u\[\e[m\]@\[\e[1;38;5;153m\]\h\[\e[m\]\[\e[1;33m\]]\[\e[m\] \[\e[1;33m\][\[\e[m\]\[\e[1;38;5;214m\]\w\[\e[m\]\[\e[1;33m\]]\[\e[m\]\\n\[\e[1;33m\]└─O\[\e[m\] "
 
 source /usr/share/fzf/completion.bash && source /usr/share/fzf/key-bindings.bash
 
