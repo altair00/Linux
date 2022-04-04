@@ -1,4 +1,5 @@
 
 pacman -S ttf-freefont ttf-liberation ttf-droid
 pacman -S ttf-dejavu
+pacman -S ttf-nerd-fonts-symbols
 yay -S ttf-ms-fonts
