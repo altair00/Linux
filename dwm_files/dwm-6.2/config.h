@@ -79,7 +79,7 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "st", NULL };
 static const char *browser[] = { "brave", NULL };
-static const char *filemanager[] = { "nautilus", NULL };
+static const char *filemanager[] = { "thunar", NULL };
 //static const char *audiocontrol[] = { "pulsemixer", NULL };
 static const char *lock[] = { "/home/abir/sh/lock.sh",  NULL };
 static const char *power[] = { "/home/abir/sh/power.sh",  NULL };
@@ -87,6 +87,7 @@ static const char *search[] = { "/home/abir/sh/search.sh",  NULL };
 static const char *new_words[] = { "/home/abir/sh/new_words.sh",  NULL };
 static const char *maim_cmd[]  = { "/home/abir/sh/screenshot.sh", NULL  };
 static const char *maim_selective_cmd[]  = { "/home/abir/sh/screenshot_selective.sh", NULL  };
+static const char *maim_selective_clipboard_cmd[]  = { "/home/abir/sh/screenshot_selective_clipboard.sh", NULL  };
 static const char *note[]  = { "st", "-t", "note", "/home/abir/sh/note.sh", NULL  };
 static const char *pdf_opener[]  = { "/home/abir/sh/pdf_opener.sh", NULL  };
 
@@ -96,6 +97,7 @@ static Key keys[] = {
 	/* modifier                     key        function        argument */
     { 0,                            XK_Print,   spawn,          {.v = maim_cmd } },
     { ControlMask,                  XK_Print,   spawn,          {.v = maim_selective_cmd } },
+    { ControlMask|ShiftMask,        XK_Print,   spawn,          {.v = maim_selective_clipboard_cmd } },
 	{ MODKEY|ShiftMask,             XK_b,       spawn,          {.v = browser } },
 	{ MODKEY|ShiftMask,             XK_l,       spawn,          {.v = lock } },
 	{ MODKEY|ShiftMask,             XK_x,       spawn,          {.v = power } },
