@@ -67,6 +67,8 @@ Plug    'iamcco/markdown-preview.vim'
 Plug    'Yggdroot/indentLine'
 Plug    'mattn/emmet-vim'
 "Plug    'maxmellon/vim-jsx-pretty'
+Plug    'ryanoasis/vim-devicons'
+Plug    'tpope/vim-commentary'
 call plug#end()
 
 """"""""""""""""""""""""""""""""""""""
@@ -81,8 +83,10 @@ nnoremap <silent> <C-f> :Files<CR>
 """"""" theme """"""
 """"""""""""""""""
 
-colorscheme gruvbox
 "colorscheme ron
+set bg=dark
+colorscheme gruvbox
+"
 "
 """"""""""""""""""""""""""""""
 """"""" the nerd tree """"""
@@ -104,8 +108,8 @@ let g:airline_theme='minimalist'
 
 set pastetoggle=<F3>
 "vmap <leader>xyy :!xclip -f -sel clip<CR>
-"vmap <C-C> :w !xclip -i -sel c<CR><CR>
-vmap <leader>xyy :w !xclip -i -sel c<CR><CR>
+vmap <C-C> :w !xclip -i -sel c<CR><CR>
+"vmap <leader>xyy :w !xclip -i -sel c<CR><CR>
 map <leader>xpp :-1r!xclip -o -sel c<CR>
 
 
@@ -172,5 +176,9 @@ autocmd Filetype json
   \ let g:indentLine_setConceal = 0 |
   \ let g:vim_json_syntax_conceal = 0
 
+map I :! pdflatex --shell-escape %<CR><CR>
+map S :! zathura $(echo % \| sed 's/tex$/pdf/') & disown <CR><CR>
+
+" let g:airline#extensions#tabline#enabled = 1
 
 
