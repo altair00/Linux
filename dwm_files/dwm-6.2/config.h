@@ -29,10 +29,21 @@ static const unsigned int alphas[][3]      = {
 	[SchemeSel]  = { OPAQUE, baralpha, borderalpha },
 };
 
+typedef struct {
+	const char *name;
+	const void *cmd;
+} Sp;
+const char *spcmd1[] = {"st", "-n", "spterm", NULL };
+const char *spcmd2[] = {"st", "-n", "spfm",  "-g", "120x30","-e", "ranger", NULL };
+static Sp scratchpads[] = {
+	/* name          cmd  */
+	{"spterm",      spcmd1},
+	{"spranger",    spcmd2},
+};
+
+
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
-
-/*fst - floating st*/
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -40,15 +51,16 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class                 instance                 title           tags mask    iscentered      isfloating  isterminal  noswallow    monitor */
-	{ "Gimp",                  NULL,                  NULL,               0,            0,              1,          0,          0,        -1 },
-	{ "Firefox",               NULL,                  NULL,            1 << 8,          0,              0,          0,         -1,        -1 },
-	{ "st",                    NULL,                  NULL,               0,            0,              0,          1,          0,        -1 },
-	{ NULL,                    NULL,              "Event Tester",         0,            0,              0,          0,          1,        -1 }, /* xev */
-	{ "st-256color",       "st-256color",         "pulsemixer",           0,            1,              1,          0,          1,        -1 }, 
-	{ "Brave-browser",         NULL,                  NULL,               1,            0,              0,          0,          1,        -1 },
-	{ "st-256color",        "st-256color",           "note",              0,            1,              1,          0,          1,        -1 },
-	{ "Zathura",          "org.pwmt.zathura",         NULL,               0,            0,              0,          0,          1,        -1 },
-	{ "fst",                "st-256color",            "fst",              0,            1,              1,          0,          1,        -1 }, 
+	{ "Firefox",                NULL,                  NULL,            1 << 8,          0,              0,          0,         -1,        -1 },
+	{ "st",                     NULL,                  NULL,               0,            0,              0,          1,          0,        -1 },
+	{ NULL,                     NULL,              "Event Tester",         0,            0,              0,          0,          1,        -1 }, /* xev */
+	{ "st-256color",       "st-256color",         "pulsemixer",            0,            1,              1,          0,          1,        -1 }, 
+	{ "Brave-browser",          NULL,                  NULL,               1,            0,              0,          0,          1,        -1 },
+	{ "st-256color",        "st-256color",           "note",               0,            1,              1,          0,          1,        -1 },
+	{ "Zathura",          "org.pwmt.zathura",         NULL,                0,            0,              0,          0,          1,        -1 },
+	{ NULL,		             "spterm",		          NULL,		       SPTAG(0),		 1,			     1,          0,          0,        -1 },
+	{ NULL,		             "spfm",		          NULL,		       SPTAG(1),		 1,			     1,          0,          0,        -1 },
+	{ NULL,                     NULL,                "OpenGL",            0,             1,              1,          0,          1,        -1 }, 
 };
 
 /* layout(s) */
@@ -78,18 +90,16 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "st", NULL };
-static const char *browser[] = { "brave", NULL };
-static const char *filemanager[] = { "thunar", NULL };
-//static const char *audiocontrol[] = { "pulsemixer", NULL };
-static const char *lock[] = { "/home/abir/sh/lock.sh",  NULL };
-static const char *power[] = { "/home/abir/sh/power.sh",  NULL };
-static const char *search[] = { "/home/abir/sh/search.sh",  NULL };
-static const char *new_words[] = { "/home/abir/sh/new_words.sh",  NULL };
-static const char *maim_cmd[]  = { "/home/abir/sh/screenshot.sh", NULL  };
-static const char *maim_selective_cmd[]  = { "/home/abir/sh/screenshot_selective.sh", NULL  };
-static const char *maim_selective_clipboard_cmd[]  = { "/home/abir/sh/screenshot_selective_clipboard.sh", NULL  };
-static const char *note[]  = { "st", "-t", "note", "/home/abir/sh/note.sh", NULL  };
-static const char *pdf_opener[]  = { "/home/abir/sh/pdf_opener.sh", NULL  };
+static const char *browser[] = { "brave-browser", NULL };
+static const char *filemanager[] = { "nautilus", NULL };
+static const char *lock[] = { "/home/altair/sh/lock.sh",  NULL };
+static const char *power[] = { "/home/altair/sh/power.sh",  NULL };
+static const char *search[] = { "/home/altair/sh/search.sh",  NULL };
+static const char *new_words[] = { "/home/altair/sh/new_words.sh",  NULL };
+static const char *maim_cmd[]  = { "/home/altair/sh/screenshot.sh", NULL  };
+static const char *maim_selective_cmd[]  = { "/home/altair/sh/screenshot_selective.sh", NULL  };
+static const char *note[]  = { "st", "-t", "note", "/home/altair/sh/note.sh", NULL  };
+static const char *pdf_opener[]  = { "/home/altair/sh/pdf_opener.sh", NULL  };
 
 
 #include "movestack.c"
@@ -97,59 +107,57 @@ static Key keys[] = {
 	/* modifier                     key        function        argument */
     { 0,                            XK_Print,   spawn,          {.v = maim_cmd } },
     { ControlMask,                  XK_Print,   spawn,          {.v = maim_selective_cmd } },
-    { ControlMask|ShiftMask,        XK_Print,   spawn,          {.v = maim_selective_clipboard_cmd } },
 	{ MODKEY|ShiftMask,             XK_b,       spawn,          {.v = browser } },
 	{ MODKEY|ShiftMask,             XK_l,       spawn,          {.v = lock } },
 	{ MODKEY|ShiftMask,             XK_x,       spawn,          {.v = power } },
 	{ MODKEY|ShiftMask,             XK_n,       spawn,          {.v = filemanager } },
-	//{ MODKEY|ShiftMask,             XK_p,       spawn,          {.v = audiocontrol } },
 	{ MODKEY|ShiftMask,             XK_p,       spawn,          SHCMD("st -e pulsemixer") },
 	{ MODKEY|ShiftMask,             XK_r,       spawn,          SHCMD("st -e ranger") },
-	{ MODKEY,                       XK_u,       spawn,          SHCMD("st -c 'fst' -t 'fst'") },
-	{ MODKEY,                       XK_r,       spawn,         {.v = pdf_opener } },
-	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
-	{ MODKEY,                       XK_s,      spawn,          {.v = search } },
-	{ MODKEY,                       XK_w,      spawn,          {.v = new_words } },
-	{ MODKEY,                       XK_n,      spawn,          {.v = note } },
-	//{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
-	{ MODKEY,            		    XK_Return, spawn,          {.v = termcmd } },
-	{ MODKEY,                       XK_b,      togglebar,      {0} },
-	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
-	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
-	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
-	{ MODKEY,                       XK_p,      incnmaster,     {.i = -1 } },
-	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
-	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
-	{ MODKEY|ShiftMask,             XK_j,      movestack,      {.i = +1 } },
-	{ MODKEY|ShiftMask,             XK_k,      movestack,      {.i = -1 } },
-	{ MODKEY|ShiftMask,             XK_Return, zoom,           {0} },
-	{ MODKEY,                       XK_Tab,    view,           {0} },
-	{ MODKEY|ShiftMask,             XK_q,      killclient,     {0} },
-	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
-	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
-	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
-	{ MODKEY,                       XK_space,  setlayout,      {0} },
-	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
-	{ MODKEY|ShiftMask,             XK_f,      togglefullscr,  {0} },
-	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
-	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
-	{ MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
-	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
-	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
-	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
-	{ MODKEY,                       XK_minus,  setgaps,        {.i = -1 } },
-	{ MODKEY,                       XK_equal,  setgaps,        {.i = +1 } },
-	{ MODKEY|ShiftMask,             XK_equal,  setgaps,        {.i = 0  } },
-	TAGKEYS(                        XK_1,                      0)
-	TAGKEYS(                        XK_2,                      1)
-	TAGKEYS(                        XK_3,                      2)
-	TAGKEYS(                        XK_4,                      3)
-	TAGKEYS(                        XK_5,                      4)
-	TAGKEYS(                        XK_6,                      5)
-	TAGKEYS(                        XK_7,                      6)
-	TAGKEYS(                        XK_8,                      7)
-	TAGKEYS(                        XK_9,                      8)
-	{ MODKEY|ShiftMask,             XK_e,      quit,           {0} },
+	{ MODKEY,            			XK_y,  	   togglescratch,   {.ui = 0 } },
+	{ MODKEY,            			XK_u,	   togglescratch,   {.ui = 1 } },
+	{ MODKEY,                       XK_r,       spawn,          {.v = pdf_opener } },
+	{ MODKEY,                       XK_d,      spawn,           {.v = dmenucmd } },
+	{ MODKEY,                       XK_s,      spawn,           {.v = search } },
+	{ MODKEY,                       XK_w,      spawn,           {.v = new_words } },
+	{ MODKEY,                       XK_n,      spawn,           {.v = note } },
+	{ MODKEY,            		    XK_Return, spawn,           {.v = termcmd } },
+	{ MODKEY,                       XK_b,      togglebar,       {0} },
+	{ MODKEY,                       XK_j,      focusstack,      {.i = +1 } },
+	{ MODKEY,                       XK_k,      focusstack,      {.i = -1 } },
+	{ MODKEY,                       XK_i,      incnmaster,      {.i = +1 } },
+	{ MODKEY,                       XK_p,      incnmaster,      {.i = -1 } },
+	{ MODKEY,                       XK_h,      setmfact,        {.f = -0.05} },
+	{ MODKEY,                       XK_l,      setmfact,        {.f = +0.05} },
+	{ MODKEY|ShiftMask,             XK_j,      movestack,       {.i = +1 } },
+	{ MODKEY|ShiftMask,             XK_k,      movestack,       {.i = -1 } },
+	{ MODKEY|ShiftMask,             XK_Return, zoom,            {0} },
+	{ MODKEY,                       XK_Tab,    view,            {0} },
+	{ MODKEY|ShiftMask,             XK_q,      killclient,      {0} },
+	{ MODKEY,                       XK_t,      setlayout,       {.v = &layouts[0]} },
+	{ MODKEY,                       XK_f,      setlayout,       {.v = &layouts[1]} },
+	{ MODKEY,                       XK_m,      setlayout,       {.v = &layouts[2]} },
+	{ MODKEY,                       XK_space,  setlayout,       {0} },
+	{ MODKEY|ShiftMask,             XK_space,  togglefloating,  {0} },
+	{ MODKEY|ShiftMask,             XK_f,      togglefullscr,   {0} },
+	{ MODKEY,                       XK_0,      view,            {.ui = ~0 } },
+	{ MODKEY|ShiftMask,             XK_0,      tag,             {.ui = ~0 } },
+	{ MODKEY,                       XK_comma,  focusmon,        {.i = -1 } },
+	{ MODKEY,                       XK_period, focusmon,        {.i = +1 } },
+	{ MODKEY|ShiftMask,             XK_comma,  tagmon,          {.i = -1 } },
+	{ MODKEY|ShiftMask,             XK_period, tagmon,          {.i = +1 } },
+	{ MODKEY,                       XK_minus,  setgaps,         {.i = -1 } },
+	{ MODKEY,                       XK_equal,  setgaps,         {.i = +1 } },
+	{ MODKEY|ShiftMask,             XK_equal,  setgaps,         {.i = 0  } },
+	TAGKEYS(                        XK_1,                       0)
+	TAGKEYS(                        XK_2,                       1)
+	TAGKEYS(                        XK_3,                       2)
+	TAGKEYS(                        XK_4,                       3)
+	TAGKEYS(                        XK_5,                       4)
+	TAGKEYS(                        XK_6,                       5)
+	TAGKEYS(                        XK_7,                       6)
+	TAGKEYS(                        XK_8,                       7)
+	TAGKEYS(                        XK_9,                       8)
+	{ MODKEY|ShiftMask,             XK_e,      quit,            {0} },
 };
 
 /* button definitions */
@@ -161,7 +169,7 @@ static Button buttons[] = {
 	{ ClkStatusText,        0,              Button2,        spawn,          {.v = termcmd } },
 	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
 	{ ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
-	{ ClkClientWin,         MODKEY,         Button3,        resizemouse,    {0} },
+	{ ClkClientWin,         MODKEY,         Button1,        resizemouse,    {0} },
 	{ ClkTagBar,            0,              Button1,        view,           {0} },
 	{ ClkTagBar,            0,              Button3,        toggleview,     {0} },
 	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
