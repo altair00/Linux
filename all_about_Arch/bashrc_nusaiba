@@ -21,13 +21,14 @@ alias copy='xclip -selection clipboard'
 alias back='cd ..'
 alias ae='~/sh/autoexec.sh'
 alias pingg='ping 8.8.8.8'
+alias mars='java -jar ~/bin/mars.jar nc dec'
+alias ltspice='wine ~/ltspice/XVIIx64.exe'
 
-PS1="\[\e[1;33m\]┌──\[\e[m\]\[\e[1;33m\][\[\e[m\]\[\e[1;38;5;172m\]\u\[\e[m\]@\[\e[1;38;5;153m\]\h\[\e[m\]\[\e[1;33m\]]\[\e[m\] \[\e[1;33m\][\[\e[m\]\[\e[1;38;5;214m\]\w\[\e[m\]\[\e[1;33m\]]\[\e[m\]\\n\[\e[1;33m\]└─O\[\e[m\] "
+parse_git_branch() {
+    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ [\1]/'
+}
+
+PS1="\[\e[1;33m\]┌──\[\e[m\]\[\e[1;33m\][\[\e[m\]\[\e[1;38;5;172m\]\u\[\e[m\]@\[\e[1;38;5;153m\]\h\[\e[m\]\[\e[1;33m\]]\[\e[m\] \[\e[1;33m\][\[\e[m\]\[\e[1;38;5;214m\]\w\[\e[m\]\[\e[1;33m\]]\[\e[m\]\[\e[0;38;5;153m\]\$(parse_git_branch)\[\e[m\]\\n\[\e[1;33m\]└─O\[\e[m\] "
 
 source /usr/share/fzf/completion.bash && source /usr/share/fzf/key-bindings.bash
-
-
-
-
-
 
